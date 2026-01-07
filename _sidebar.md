@@ -4,7 +4,7 @@
 
 ---
 
-* **⚡ فاز واکنش سریع (۷۲ ساعت)**
+* **[⚡ فاز واکنش سریع (۷۲ ساعت)](Rapid-Response-72h/README.md)**
   * [📍 نقشه راه زمانی](Rapid-Response-72h/Crisis-Response.md)
   * [👥 وظایف صنوف و داوطلبان](Rapid-Response-72h/Sectors-Duty.md)
   * [⚖️ عدالت انتقالی و منع انتقام](Rapid-Response-72h/Interim-Justice.md)
@@ -13,7 +13,7 @@
 
 ---
 
-* **🛠 لایه‌های تخصصی**
+* **[🛠 لایه‌های تخصصی](Infrastructure/README.md)**
   * [📡 زیرساخت و ارتباطات (Mesh)](Infrastructure/Mesh-Networks.md)
   * [🔋 مدیریت انرژی](Infrastructure/Energy-Management.md)
   * [🛡️ امنیت مدنی و محله](Civil-Safety/Neighborhood-Coordination.md)
