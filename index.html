@@ -44,26 +44,30 @@
 plugins: [
       function(hook, vm) {
         hook.beforeEach(function(html) {
-          // ۱. استخراج پوشه فعلی از آدرس بار
-          const currentPath = vm.route.path;
-          const currentDir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-          
-          // ۲. شناسایی لینک‌های داخلی که به .md ختم می‌شوند
+          // ۱. گرفتن مسیر فعلی بدون نام فایل (فقط پوشه)
+          // مثال: اگر در /Infrastructure/Mesh-Networks هستیم، خروجی می‌شود /Infrastructure/
+          const currentPath = location.hash.replace('#', '');
+          const currentDir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) || '/';
+
+          // ۲. شناسایی لینک‌های داخلی (.md) که مطلق نیستند
           return html.replace(/\[([^\]]+)\]\((?!http|https|\/)([^)]+)\.md\)/g, function(match, text, path) {
-            // حذف ./ از ابتدای لینک اگر وجود داشته باشد
-            let cleanPath = path.replace(/^\.\//, '');
             
-            // ۳. جادوی اصلی: اگر لینک حاوی .. است، آدرس را از ریشه بازسازی کن
+            // ۳. پاکسازی مسیر لینک
+            let targetPath = path.replace(/^\.\//, ''); // حذف ./ ابتدایی
+            
             let finalLink;
-            if (cleanPath.startsWith('../')) {
-                // اگر لینک به پوشه عقب‌تر می‌رود، اجازه بده خود Docsify مدیریت کند (چون چاره‌ای نیست)
-                finalLink = cleanPath + '.md';
+            if (targetPath.startsWith('../')) {
+              // اگر لینک به عقب برمی‌گردد، از مکانیزم داخلی مرورگر برای حل آدرس استفاده می‌کنیم
+              // این کار آدرس‌های زشت را پاکسازی می‌کند
+              const dummyBase = "http://x.com" + currentDir;
+              const resolved = new URL(targetPath + '.md', dummyBase);
+              finalLink = resolved.pathname;
             } else {
-                // در غیر این صورت، آدرس را مستقیماً به پوشه فعلی بچسبان
-                finalLink = currentDir + cleanPath + '.md';
+              // اگر لینک در همان پوشه است، مستقیم به دایرکتوری فعلی می‌چسبانیم
+              finalLink = currentDir + targetPath + '.md';
             }
-            
-            // جلوگیری از تکرار اسلش دوبل //
+
+            // ۴. اطمینان از حذف اسلش‌های تکراری
             finalLink = finalLink.replace(/\/+/g, '/');
 
             return '[' + text + '](' + finalLink + ')';
