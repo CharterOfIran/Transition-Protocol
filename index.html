@@ -1,65 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>Docs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <meta charset="UTF-8" />
+  <title>منشور هم‌سرنوشتی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
 </head>
-<body>
-  <div id="app">Loading...</div>
 
-<!--  <script>
-    window.$docsify = {
-      loadSidebar: true,
-      basePath: '/Transition-Protocol/',   // ← مهم‌ترین خط
-      alias: {
-        '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
-      }
-    };
-  </script> 
-<script>
+<body>
+  <div id="app">در حال بارگذاری...</div>
+
+  <!-- تنظیمات Docsify -->
+  <script>
     window.$docsify = {
       name: 'منشور هم‌سرنوشتی v1.0.0',
       repo: 'https://github.com/CharterOfIran/Transition-Protocol',
       loadSidebar: true,
       subMaxLevel: 2,
       auto2top: true,
-      relativePath: false, // اضافه شدن این خط برای حل مشکل مسیرها در گیت‌هاب
       homepage: 'README.md',
+
+      /* مسیر اصلی سایت روی GitHub Pages */
+      basePath: '/Transition-Protocol/',
+
+      /* سایدبار را از ریشه لود کن */
       alias: {
-        '/.*/_sidebar.md': '/_sidebar.md'
+        '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
       },
+
       search: {
         maxAge: 86400000,
         paths: 'auto',
-        placeholder: 'جستجو در منشور...',
-        noData: 'نتیجه‌ای یافت نشد!',
+        placeholder: 'جستجو...',
+        noData: 'نتیجه‌ای یافت نشد',
         depth: 6
       }
-    }
-  </script>-->
-<script>
-  window.$docsify = {
-    name: 'منشور هم‌سرنوشتی v1.0.0',
-    repo: 'https://github.com/CharterOfIran/Transition-Protocol',
-    loadSidebar: true,
-    subMaxLevel: 2,
-    auto2top: true,
-    homepage: 'README.md',
-    basePath: '/Transition-Protocol/',   // ← این خط حیاتی است
-    alias: {
-      '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
-    },
-    search: {
-      maxAge: 86400000,
-      paths: 'auto',
-      placeholder: 'جستجو در منشور...',
-      noData: 'نتیجه‌ای یافت نشد!',
-      depth: 6
-    }
-  }
-</script>
+    };
+  </script>
+
+  <!-- پلاگین اصلاح لینک‌های Markdown -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      window.$docsify = window.$docsify || {};
+      window.$docsify.plugins = [].concat(function (hook, vm) {
+        hook.doneEach(function () {
+          const links = document.querySelectorAll("a[href]");
+
+          links.forEach(a => {
+            const href = a.getAttribute("href");
+
+            // فقط لینک‌های نسبی Markdown را اصلاح کن
+            if (
+              href &&
+              href.endsWith(".md") &&
+              !href.startsWith("http") &&
+              !href.startsWith("#") &&
+              !href.startsWith("/")
+            ) {
+              const current = vm.route.file; // مسیر فایل فعلی
+              const folder = current.substring(0, current.lastIndexOf("/") + 1);
+
+              // ساخت مسیر درست
+              const fixed = "#/" + folder + href.replace("./", "");
+              a.setAttribute("href", fixed);
+            }
+          });
+        });
+      }, window.$docsify.plugins || []);
+    });
+  </script>
+
+  <!-- Docsify -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>
 </html>
