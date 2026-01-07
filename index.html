@@ -29,28 +29,32 @@
 </head>
 <body>
   <div id="app">در حال بارگذاری...</div>
-  <script>
-    // --- اسکریپت اصلاح مسیر (Router Fix) ---
-    (function() {
-      const path = location.hash.replace('#', '');
-      if (path.includes('_sidebar.md')) {
-        location.hash = '#/'; // جلوگیری از لود شدن مستقیم فایل سایدبار در بدنه
+<script>
+  window.$docsify = {
+    name: 'منشور هم‌سرنوشتی',
+    repo: 'https://github.com/CharterOfIran/Transition-Protocol',
+    loadSidebar: true,
+    subMaxLevel: 3,
+    auto2top: true,
+    rtl: true,
+    // این بخش باعث می‌شود لینک‌های نسبی به درستی کار کنند
+    relativePath: true, 
+    
+    // --- اسکریپت اصلاح‌کننده آدرس (The Fixer Script) ---
+    plugins: [
+      function(hook, vm) {
+        hook.beforeEach(function(html) {
+          // این رگکس لینک‌های مارک‌داون که به .md ختم می‌شوند را پیدا کرده
+          // و ساختار آن‌ها را برای Docsify اصلاح می‌کند
+          return html.replace(/\[([^\]]+)\]\((?!http|https)([^)]+)\.md\)/g, function(match, text, path) {
+            // اگر لینک حاوی پوشه نیست و ما در یک زیرپوشه هستیم، مسیر را اصلاح می‌کند
+            return '[' + text + '](' + path + '.md)';
+          });
+        });
       }
-    })();
-
-    window.$docsify = {
-      name: 'منشور هم‌سرنوشتی',
-      repo: 'https://github.com/CharterOfIran/Transition-Protocol',
-      loadSidebar: true,
-      subMaxLevel: 2,
-      auto2top: true,
-      // اصلاح نام مستعار برای پیدا کردن سایدبار در همه پوشه‌ها
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md',
-        '/': '/README.md'
-      }
-    }
-  </script>
+    ]
+  };
+</script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
