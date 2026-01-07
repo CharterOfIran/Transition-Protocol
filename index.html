@@ -41,23 +41,31 @@
     // غیرفعال کردن مسیر نسبی برای جلوگیری از تکرار نام پوشه‌ها در سایدبار
     relativePath: false,
 
-    plugins: [
+plugins: [
       function(hook, vm) {
-        // اسکریپت مخصوص اصلاح لینک‌های داخل صفحات (Content Fixer)
         hook.beforeEach(function(html) {
-          // پیدا کردن مسیر پوشه فعلی (مثلاً Rapid-Response-72h)
-          const currentDir = vm.route.path.split('/').slice(0, -1).join('/');
+          // ۱. استخراج پوشه فعلی از آدرس بار
+          const currentPath = vm.route.path;
+          const currentDir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
           
-          // اصلاح لینک‌هایی که به .md ختم می‌شوند و مطلق نیستند
+          // ۲. شناسایی لینک‌های داخلی که به .md ختم می‌شوند
           return html.replace(/\[([^\]]+)\]\((?!http|https|\/)([^)]+)\.md\)/g, function(match, text, path) {
-            let newPath = path;
+            // حذف ./ از ابتدای لینک اگر وجود داشته باشد
+            let cleanPath = path.replace(/^\.\//, '');
             
-            // اگر لینک با ./ شروع شده باشد، آن را پاک می‌کنیم
-            newPath = newPath.replace(/^\.\//, '');
+            // ۳. جادوی اصلی: اگر لینک حاوی .. است، آدرس را از ریشه بازسازی کن
+            let finalLink;
+            if (cleanPath.startsWith('../')) {
+                // اگر لینک به پوشه عقب‌تر می‌رود، اجازه بده خود Docsify مدیریت کند (چون چاره‌ای نیست)
+                finalLink = cleanPath + '.md';
+            } else {
+                // در غیر این صورت، آدرس را مستقیماً به پوشه فعلی بچسبان
+                finalLink = currentDir + cleanPath + '.md';
+            }
             
-            // ساختن مسیر جدید بر اساس پوشه فعلی
-            const finalLink = currentDir + '/' + newPath + '.md';
-            
+            // جلوگیری از تکرار اسلش دوبل //
+            finalLink = finalLink.replace(/\/+/g, '/');
+
             return '[' + text + '](' + finalLink + ')';
           });
         });
