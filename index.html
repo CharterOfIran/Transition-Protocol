@@ -30,25 +30,35 @@
 <body>
   <div id="app">در حال بارگذاری...</div>
 <script>
-  window.$docsify = {
+ window.$docsify = {
     name: 'منشور هم‌سرنوشتی',
     repo: 'https://github.com/CharterOfIran/Transition-Protocol',
     loadSidebar: true,
     subMaxLevel: 3,
     auto2top: true,
     rtl: true,
-    // این بخش باعث می‌شود لینک‌های نسبی به درستی کار کنند
-    relativePath: false, 
     
-    // --- اسکریپت اصلاح‌کننده آدرس (The Fixer Script) ---
+    // غیرفعال کردن مسیر نسبی برای جلوگیری از تکرار نام پوشه‌ها در سایدبار
+    relativePath: false,
+
     plugins: [
       function(hook, vm) {
+        // اسکریپت مخصوص اصلاح لینک‌های داخل صفحات (Content Fixer)
         hook.beforeEach(function(html) {
-          // این رگکس لینک‌های مارک‌داون که به .md ختم می‌شوند را پیدا کرده
-          // و ساختار آن‌ها را برای Docsify اصلاح می‌کند
-          return html.replace(/\[([^\]]+)\]\((?!http|https)([^)]+)\.md\)/g, function(match, text, path) {
-            // اگر لینک حاوی پوشه نیست و ما در یک زیرپوشه هستیم، مسیر را اصلاح می‌کند
-            return '[' + text + '](' + path + '.md)';
+          // پیدا کردن مسیر پوشه فعلی (مثلاً Rapid-Response-72h)
+          const currentDir = vm.route.path.split('/').slice(0, -1).join('/');
+          
+          // اصلاح لینک‌هایی که به .md ختم می‌شوند و مطلق نیستند
+          return html.replace(/\[([^\]]+)\]\((?!http|https|\/)([^)]+)\.md\)/g, function(match, text, path) {
+            let newPath = path;
+            
+            // اگر لینک با ./ شروع شده باشد، آن را پاک می‌کنیم
+            newPath = newPath.replace(/^\.\//, '');
+            
+            // ساختن مسیر جدید بر اساس پوشه فعلی
+            const finalLink = currentDir + '/' + newPath + '.md';
+            
+            return '[' + text + '](' + finalLink + ')';
           });
         });
       }
