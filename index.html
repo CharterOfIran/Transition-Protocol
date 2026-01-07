@@ -39,7 +39,7 @@
       }
     }
   </script>-->
-  <script>
+<script>
   window.$docsify = {
     name: 'منشور هم‌سرنوشتی v1.0.0',
     repo: 'https://github.com/CharterOfIran/Transition-Protocol',
@@ -47,8 +47,9 @@
     subMaxLevel: 2,
     auto2top: true,
     homepage: 'README.md',
+    basePath: '/Transition-Protocol/',   // ← این خط حیاتی است
     alias: {
-      '/.*/_sidebar.md': '/_sidebar.md'
+      '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
     },
     search: {
       maxAge: 86400000,
