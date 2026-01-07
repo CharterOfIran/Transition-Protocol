@@ -7,22 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <style>
-    /* تنظیمات فونت و راست‌چین */
+    /* تنظیمات پایه برای راست‌چین */
     :root { --theme-color: #d32f2f; }
     body { font-family: "Tahoma", "Arial", sans-serif; direction: rtl; overflow-x: hidden; }
+    
+    /* اصلاح بدنه اصلی */
     .markdown-section { text-align: right; direction: rtl; padding: 20px 40px !important; }
     
-    /* فیکس کردن سایدبار در سمت راست */
-    .sidebar { left: auto !important; right: 0 !important; text-align: right; border-left: 1px solid rgba(0,0,0,.07); }
-    .content { left: 0 !important; right: 300px !important; }
+    /* تنظیم سایدبار واحد در سمت راست */
+    .sidebar { 
+      left: auto !important; 
+      right: 0 !important; 
+      text-align: right; 
+      border-left: 1px solid rgba(0,0,0,.07); 
+      border-right: none !important;
+    }
     
-    /* اصلاح منو در موبایل */
-    .sidebar-toggle { left: auto !important; right: 0 !important; background: rgba(255,255,255,.8); padding: 10px; }
+    /* جابجایی محتوا به چپ برای باز شدن فضا برای سایدبار راست */
+    .content { 
+      left: 0 !important; 
+      right: 300px !important; 
+    }
+
+    /* تنظیم دکمه منو (همبرگری) */
+    .sidebar-toggle { 
+      left: auto !important; 
+      right: 0 !important; 
+      background: rgba(255,255,255,.8); 
+    }
+
+    /* نمایش صحیح لیست‌ها در سایدبار */
+    .sidebar-nav ul { padding: 0 15px 0 0 !important; list-style: none; }
+    .sidebar-nav li { margin: 5px 0; }
     
+    /* تنظیمات موبایل */
     @media screen and (max-width: 768px) {
       .content { right: 0 !important; }
-      .sidebar { right: -300px !important; }
+      .sidebar { right: -300px !important; transition: right .25s ease-out; }
       body.close .sidebar { right: 0 !important; }
+      .sidebar-toggle { right: 0 !important; width: 50px; }
     }
   </style>
 </head>
@@ -36,10 +59,8 @@
       subMaxLevel: 2,
       auto2top: true,
       homepage: 'README.md',
-      
-      // حل مشکل لینک‌ها و سایدبار به صورت همزمان
-      basePath: '/Transition-Protocol/', 
-      
+      // آدرس‌دهی دقیق برای گیت‌هاب
+      basePath: 'https://charterofiran.github.io/Transition-Protocol/',
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       }
