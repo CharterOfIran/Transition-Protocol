@@ -16,5 +16,5 @@
 
 * **🤝 مشارکت و گفتگو**
   * [راهنمای مشارکت ایمن](CONTRIBUTING.md)
-  * [ثبت نقد و پیشنهاد (Issues)](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/issues)
-  * [تالار گفتگو (Discussions)](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/discussions)
+  * [ثبت نقد و پیشنهاد (Issues)](https://github.com/CharterOfIran/Transition-Protocol/issues)
+  * [تالار گفتگو (Discussions)](https://github.com/CharterOfIran/Transition-Protocol/discussions)
