@@ -11,10 +11,14 @@
 
   <script>
     window.$docsify = {
-      loadSidebar: true
+      loadSidebar: true,
+      basePath: '/Transition-Protocol/',   // ← مهم‌ترین خط
+      alias: {
+        '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
+      }
     };
   </script>
-<!-- force rebuild -->
+
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>
 </html>
