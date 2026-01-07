@@ -15,6 +15,6 @@
   * [لایه حقوقی و صیانت از اموال](Legal-Framework/README.md)
 
 * **🤝 مشارکت و گفتگو**
-  * [راهنمای مشارکت ایمن](CONTRIBUTING.md))
+  * [راهنمای مشارکت ایمن](CONTRIBUTING.md)
   * [ثبت نقد و پیشنهاد (Issues)](https://github.com/CharterOfIran/Transition-Protocol/issues)
   * [تالار گفتگو (Discussions)](https://github.com/CharterOfIran/Transition-Protocol/discussions)
