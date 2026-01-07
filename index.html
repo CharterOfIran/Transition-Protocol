@@ -20,15 +20,26 @@
 
     .markdown-section { text-align: right; direction: rtl; padding: 20px 45px; }
 
-/* بولد کردن تمام لینک‌های اصلی در سایدبار */
-.sidebar-nav > ul > li > a {
-  font-weight: bold;
-  font-size: 16px; /* اختیاری: برای کمی درشت‌تر شدن */
+    /* اجبار به بولد شدن لینک‌های اصلی سایدبار */
+.sidebar-nav > ul > li > a, 
+.sidebar-nav > ul > li > strong > a {
+  font-weight: bold !important;
+  font-size: 15px !important;
+  color: #333 !important; /* رنگ تیره برای وضوح بیشتر */
 }
 
-/* اگر می‌خواهید لینک‌های داخل زیرمجموعه بولد نباشند، این خط را اضافه کنید */
+/* نرمال نگه داشتن زیرمجموعه‌ها */
 .sidebar-nav > ul > li ul li a {
-  font-weight: normal;
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+
+/* بولد کردن تیترهای بدون لینک (اگر وجود داشته باشند) */
+.sidebar-nav p strong, 
+.sidebar-nav li strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: 800 !important;
 }
     
     @media screen and (max-width: 768px) {
