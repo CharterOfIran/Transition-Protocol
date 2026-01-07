@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>منشور هم‌سرنوشتی</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    /* تنظیمات پایه */
+    :root { --theme-color: #d32f2f; }
+    body { font-family: "Tahoma", sans-serif; direction: rtl; }
+    
+    /* انتقال کل سایدبار به راست با حفظ قابلیت باز و بسته شدن */
+    .sidebar {
+      left: auto !important;
+      right: 0 !important;
+      transition: transform .25s ease-out !important;
+    }
 
+    /* وقتی منو بسته می‌شود، به سمت راست (خارج از صفحه) برود */
+    body.close .sidebar {
+      transform: translateX(300px) !important;
+    }
+
+    /* تنظیم محتوا برای هماهنگی با سایدبار راست */
+    .content {
+      left: 0 !important;
+      right: 300px !important;
+      transition: right .25s ease-out !important;
+    }
+
+    /* وقتی منو بسته می‌شود، محتوا کل صفحه را بگیرد */
+    body.close .content {
+      right: 0 !important;
+    }
+
+    /* تنظیم دکمه منو */
+    .sidebar-toggle {
+      left: auto !important;
+      right: 0 !important;
+      width: 40px;
+    }
+
+    /* اصلاحات متنی */
+    .markdown-section { text-align: right; direction: rtl; padding: 20px 40px; }
+    .sidebar-nav { direction: rtl; text-align: right; }
+
+    /* تنظیمات موبایل */
+    @media screen and (max-width: 768px) {
+      .content { right: 0 !important; }
+      .sidebar { transform: translateX(300px); }
+      body.close .sidebar { transform: translateX(0) !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">در حال بارگذاری...</div>
+  <script>
+    window.$docsify = {
+      name: 'منشور هم‌سرنوشتی',
+      repo: 'https://github.com/CharterOfIran/Transition-Protocol',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      }
+    }
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+</body>
+</html>
