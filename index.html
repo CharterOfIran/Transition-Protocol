@@ -7,14 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <style>
+    /* تنظیمات راست‌چین */
     :root { --theme-color: #d32f2f; }
-    body { font-family: "Tahoma", "Arial", sans-serif; direction: rtl; }
+    body { font-family: "Tahoma", sans-serif; direction: rtl; }
     .markdown-section { text-align: right; direction: rtl; padding: 20px 40px !important; }
     
+    /* جابجایی سایدبار به سمت راست */
     .sidebar { left: auto !important; right: 0 !important; border-left: 1px solid rgba(0,0,0,.07); border-right: none !important; }
     .content { left: 0 !important; right: 300px !important; }
     .sidebar-toggle { left: auto !important; right: 0 !important; }
 
+    /* اصلاح برای موبایل */
     @media screen and (max-width: 768px) {
       .content { right: 0 !important; }
       .sidebar { right: -300px !important; }
@@ -28,10 +31,13 @@
     window.$docsify = {
       name: 'منشور هم‌سرنوشتی v1.0.0',
       repo: 'https://github.com/CharterOfIran/Transition-Protocol',
-      loadSidebar: true,
+      loadSidebar: true, // فعال کردن سایدبار از فایل _sidebar.md
       subMaxLevel: 2,
       auto2top: true,
-      basePath: '/',
+      homepage: 'README.md',
+      
+      // تنظیم حیاتی برای گیت‌هاب:
+      // این بخش باعث می‌شود فایل‌ها به درستی در زیرپوشه پیدا شوند
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       }
