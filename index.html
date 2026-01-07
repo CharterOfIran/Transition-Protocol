@@ -19,6 +19,17 @@
     body.close .content { right: 0 !important; }
 
     .markdown-section { text-align: right; direction: rtl; padding: 20px 45px; }
+
+/* بولد کردن تمام لینک‌های اصلی در سایدبار */
+.sidebar-nav > ul > li > a {
+  font-weight: bold;
+  font-size: 16px; /* اختیاری: برای کمی درشت‌تر شدن */
+}
+
+/* اگر می‌خواهید لینک‌های داخل زیرمجموعه بولد نباشند، این خط را اضافه کنید */
+.sidebar-nav > ul > li ul li a {
+  font-weight: normal;
+}
     
     @media screen and (max-width: 768px) {
       .content { right: 0 !important; }
