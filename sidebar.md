@@ -10,9 +10,11 @@
   * [تجهیزات و روانشناسی بحران](Rapid-Response-72h/Emergency-Kit.md)
 
 * **🛠 لایه‌های تخصصی**
-  * [زیرساخت و ارتباطات (Mesh)](Infrastructure/README.md)
-  * [امنیت مدنی و سلامت محله](Civil-Safety/README.md)
-  * [لایه حقوقی و صیانت از اموال](Legal-Framework/README.md)
+  * [زیرساخت و ارتباطات (Mesh)](Infrastructure/Mesh-Networks.md)
+  * [مدیریت انرژی](Infrastructure/Energy-Management.md)
+  * [امنیت مدنی و هماهنگی محله](Civil-Safety/Neighborhood-Coordination.md)
+  * [سلامت و فوریت‌های پزشکی](Civil-Safety/Emergency-Health.md)
+  * [صیانت از اموال و دارایی‌ها](Legal-Framework/Asset-Protection.md)
 
 * **🤝 مشارکت و گفتگو**
   * [راهنمای مشارکت ایمن](CONTRIBUTING.md)
