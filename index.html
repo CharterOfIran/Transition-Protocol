@@ -38,14 +38,12 @@
       auto2top: true,
       homepage: 'README.md',
       
-      // این بخش برای پیدا کردن فایل سایدبار در تمام زیرپوشه‌ها حیاتی است
+      // تغییر این بخش برای حل مشکل نمایش در صفحات داخلی
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       },
-      
-      // تنظیم مسیر نسبی برای سازگاری با زیرپوشه گیت‌هاب
-      relativePath: true, 
 
+      // حذف relativePath و استفاده از تنظیم پیش‌فرض برای گیت‌هاب
       search: {
         maxAge: 86400000,
         paths: 'auto',
@@ -54,7 +52,7 @@
         depth: 6
       }
     }
-</script>
+  </script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
