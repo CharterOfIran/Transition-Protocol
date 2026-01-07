@@ -7,28 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <style>
-    /* تنظیمات فونت و راست‌چین کلی */
+    /* تنظیمات فونت و راست‌چین */
     :root { --theme-color: #d32f2f; }
     body { font-family: "Tahoma", "Arial", sans-serif; direction: rtl; overflow-x: hidden; }
-    
-    /* اصلاح بدنه اصلی محتوا */
     .markdown-section { text-align: right; direction: rtl; padding: 20px 40px !important; }
     
-    /* تنظیم سایدبار برای سمت راست */
+    /* فیکس کردن سایدبار در سمت راست */
     .sidebar { left: auto !important; right: 0 !important; text-align: right; border-left: 1px solid rgba(0,0,0,.07); }
     .content { left: 0 !important; right: 300px !important; }
     
-    /* اصلاح دکمه همبرگری (منو) در موبایل */
+    /* اصلاح منو در موبایل */
     .sidebar-toggle { left: auto !important; right: 0 !important; background: rgba(255,255,255,.8); padding: 10px; }
     
-    /* اصلاح لیست‌های سایدبار */
-    .sidebar-nav ul { padding: 0 15px 0 0 !important; }
-    .sidebar-nav li { margin: 10px 0; }
-
-    /* ریسپانسیو برای موبایل */
     @media screen and (max-width: 768px) {
       .content { right: 0 !important; }
-      .sidebar { right: -300px !important; transition: right .25s ease-out; }
+      .sidebar { right: -300px !important; }
       body.close .sidebar { right: 0 !important; }
     }
   </style>
@@ -39,11 +32,14 @@
     window.$docsify = {
       name: 'منشور هم‌سرنوشتی v1.0.0',
       repo: 'https://github.com/CharterOfIran/Transition-Protocol',
-      loadSidebar: true, // این باید حتما true باشد
+      loadSidebar: true,
       subMaxLevel: 2,
       auto2top: true,
       homepage: 'README.md',
-      // این تنظیم باعث می‌شود سایدبار از فایل _sidebar.md لود شود
+      
+      // حل مشکل لینک‌ها و سایدبار به صورت همزمان
+      basePath: '/Transition-Protocol/', 
+      
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       }
