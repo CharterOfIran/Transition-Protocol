@@ -1,76 +1,57 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>منشور هم‌سرنوشتی</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
-</head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    body { font-family: "Tahoma", sans-serif; direction: rtl; }
+    
+    /* تنظیمات سایدبار راست‌چین استاندارد */
+    .sidebar { left: auto !important; right: 0 !important; border-left: 1px solid rgba(0,0,0,.07); border-right: none !important; }
+    .content { left: 0 !important; right: 300px !important; }
+    .sidebar-toggle { left: auto !important; right: 0 !important; }
 
+    /* هماهنگی با دکمه بستن منو */
+    body.close .sidebar { transform: translateX(300px); }
+    body.close .content { right: 0 !important; }
+
+    .markdown-section { text-align: right; direction: rtl; padding: 20px 45px; }
+    
+    @media screen and (max-width: 768px) {
+      .content { right: 0 !important; }
+      .sidebar { transform: translateX(300px); }
+      body.close .sidebar { transform: translateX(0) !important; }
+    }
+  </style>
+</head>
 <body>
   <div id="app">در حال بارگذاری...</div>
-
-  <!-- تنظیمات Docsify -->
   <script>
+    // --- اسکریپت اصلاح مسیر (Router Fix) ---
+    (function() {
+      const path = location.hash.replace('#', '');
+      if (path.includes('_sidebar.md')) {
+        location.hash = '#/'; // جلوگیری از لود شدن مستقیم فایل سایدبار در بدنه
+      }
+    })();
+
     window.$docsify = {
-      name: 'منشور هم‌سرنوشتی v1.0.0',
+      name: 'منشور هم‌سرنوشتی',
       repo: 'https://github.com/CharterOfIran/Transition-Protocol',
       loadSidebar: true,
       subMaxLevel: 2,
       auto2top: true,
-      homepage: 'README.md',
-
-      /* مسیر اصلی سایت روی GitHub Pages */
-      basePath: '/Transition-Protocol/',
-
-      /* سایدبار را از ریشه لود کن */
+      // اصلاح نام مستعار برای پیدا کردن سایدبار در همه پوشه‌ها
       alias: {
-        '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
-      },
-
-      search: {
-        maxAge: 86400000,
-        paths: 'auto',
-        placeholder: 'جستجو...',
-        noData: 'نتیجه‌ای یافت نشد',
-        depth: 6
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/': '/README.md'
       }
-    };
+    }
   </script>
-
-  <!-- پلاگین اصلاح لینک‌های Markdown -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      window.$docsify = window.$docsify || {};
-      window.$docsify.plugins = [].concat(function (hook, vm) {
-        hook.doneEach(function () {
-          const links = document.querySelectorAll("a[href]");
-
-          links.forEach(a => {
-            const href = a.getAttribute("href");
-
-            // فقط لینک‌های نسبی Markdown را اصلاح کن
-            if (
-              href &&
-              href.endsWith(".md") &&
-              !href.startsWith("http") &&
-              !href.startsWith("#") &&
-              !href.startsWith("/")
-            ) {
-              const current = vm.route.file; // مسیر فایل فعلی
-              const folder = current.substring(0, current.lastIndexOf("/") + 1);
-
-              // ساخت مسیر درست
-              const fixed = "#/" + folder + href.replace("./", "");
-              a.setAttribute("href", fixed);
-            }
-          });
-        });
-      }, window.$docsify.plugins || []);
-    });
-  </script>
-
-  <!-- Docsify -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
 </html>
