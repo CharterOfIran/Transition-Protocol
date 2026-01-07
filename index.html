@@ -9,7 +9,7 @@
 <body>
   <div id="app">Loading...</div>
 
-  <script>
+<!--  <script>
     window.$docsify = {
       loadSidebar: true,
       basePath: '/Transition-Protocol/',   // ← مهم‌ترین خط
@@ -17,8 +17,28 @@
         '/.*/_sidebar.md': '/Transition-Protocol/_sidebar.md'
       }
     };
+  </script> -->
+<script>
+    window.$docsify = {
+      name: 'منشور هم‌سرنوشتی v1.0.0',
+      repo: 'https://github.com/CharterOfIran/Transition-Protocol',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      relativePath: true, // اضافه شدن این خط برای حل مشکل مسیرها در گیت‌هاب
+      homepage: 'README.md',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'جستجو در منشور...',
+        noData: 'نتیجه‌ای یافت نشد!',
+        depth: 6
+      }
+    }
   </script>
-
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>
 </html>
